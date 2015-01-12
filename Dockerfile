@@ -9,8 +9,10 @@ WORKDIR /opt/graylog2-server-${GRAYLOG2_VERSION}/
 RUN ln -sf /opt/graylog2-server-${GRAYLOG2_VERSION}/ /opt/graylog2-server
 RUN cp /opt/graylog2-server/graylog2.conf.example /etc/graylog2.conf
 
-RUN java -Delasticsearch -Des.path.home="/opt" $properties -cp "$GRAYLOG_HOME/*" org.elasticsearch.plugins.PluginManager -install elasticsearch/elasticsearch-cloud-gce/2.3.0
-RUN java -Delasticsearch -Des.path.home="/opt" $properties -cp "$GRAYLOG_HOME/*" org.elasticsearch.plugins.PluginManager -install elasticsearch/elasticsearch-cloud-aws/2.3.0
+RUN mkdir -p /opt/graylog2-server/plugin/cloud-k8s
+RUN wget "https://github.com/azenk/elasticsearch-kubernetes/raw/master/elasticsearch-cloud-kubernetes-1.0.0-SNAPSHOT.zip" -O /tmp/k8s-plugin.zip && unzip /tmp/k8s-plugin.zip -d /opt/graylog2-server/plugin/cloud-k8s
+
+COPY graylog2-elasticsearch.conf /etc/graylog2-elasticsearch.conf
 
 EXPOSE 12900
 
