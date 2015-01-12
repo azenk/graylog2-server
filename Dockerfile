@@ -16,7 +16,7 @@ COPY config_template_processor.sh /usr/bin/config_template_processor.sh
 
 EXPOSE 12900
 
-ENTRYPOINT /usr/bin/config_template_processor.sh
+ENTRYPOINT ["/usr/bin/config_template_processor.sh"]
 
 CMD ["java", "-jar", "/opt/graylog2-server/graylog2-server.jar"]
 
