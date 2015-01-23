@@ -1,6 +1,6 @@
 FROM dockerfile/java
 
-ENV GRAYLOG2_VERSION 0.92.3
+ENV GRAYLOG2_VERSION 0.92.4
 
 RUN curl -L "http://packages.graylog2.org/releases/graylog2-server/graylog2-server-${GRAYLOG2_VERSION}.tgz" | tar -zx -C /opt/
 
